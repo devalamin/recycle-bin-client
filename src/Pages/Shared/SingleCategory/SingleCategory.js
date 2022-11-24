@@ -21,6 +21,7 @@ const SingleCategory = () => {
 
                 <BookingModal
                     bookingProduct={bookingProduct}
+                    setBookingProduct={setBookingProduct}
                 ></BookingModal>}
         </div>
     );

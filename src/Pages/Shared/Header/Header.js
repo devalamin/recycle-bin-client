@@ -12,11 +12,14 @@ const Header = () => {
     }
 
     const navItems = <>
-        <li className='font-semibold mt-3'>{user?.email}</li>
+        {user && <li className='font-semibold mt-3 btn btn-sm py-2'>{user?.displayName}</li>}
         <li><Link className='font-semibold' to='/'>Home</Link></li>
         <>
             {
-                user?.uid ? <li className='mt-2'><button onClick={handleLogout} className='btn btn-sm py-2'>Logout</button></li>
+                user?.uid ? <>
+                    <li><Link to='/dashboard'>Dashboard</Link></li>
+                    <li className='mt-3'><button onClick={handleLogout} className='btn btn-sm py-2'>Logout</button></li>
+                </>
                     :
                     <li><Link className='font-semibold' to='/login'>Login</Link></li>
             }

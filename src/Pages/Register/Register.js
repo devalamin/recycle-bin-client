@@ -3,10 +3,12 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
+
+    const navigate = useNavigate()
 
     const googleProvider = new GoogleAuthProvider();
 
@@ -24,9 +26,15 @@ const Register = () => {
                     displayName: data.name
                 };
                 updateUserProfile(userInfo)
+                    .then(() => {
+                        saveAllUserToDb(data.account_type, data.name, data.email)
+
+                    })
+                    .catch(error => console.error(error))
 
                 if (user.uid) {
                     toast.success(`${data.account_type} Account Created Successfully`)
+
                 }
                 console.log(user);
             })
@@ -35,8 +43,31 @@ const Register = () => {
                 console.error(error)
             })
 
-
     };
+
+    const saveAllUserToDb = (account_type, name, email) => {
+        const user = {
+            account_type,
+            name,
+            email
+        }
+
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                navigate('/')
+            })
+
+    }
+
+
 
     const handleGoogleLogin = () => {
         googleLogin(googleProvider)
@@ -47,7 +78,7 @@ const Register = () => {
             .catch(error => {
                 console.log(error);
             })
-    }
+    };
 
 
     return (
