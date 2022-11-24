@@ -22,7 +22,7 @@ const Categories = () => {
 
         <div>
             <div className='mt-10'>
-                <h2 className='text-2xl font-bold'>Choose Your Car By Favourite Brand Name:</h2>
+                <h2 className='sm:text-2xl font-bold'>Choose Your Car By Favourite Brand Name:</h2>
             </div>
             <div className='grid sm:grid-cols-3 gap-10 grid-cols-1 mb-5 sm:mb-20 sm:mt-10'>
                 {

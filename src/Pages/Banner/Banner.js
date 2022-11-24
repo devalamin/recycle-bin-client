@@ -9,7 +9,7 @@ const Banner = () => {
                     <div className="">
                         <h1 className="mb-5 sm:text-2xl font-bold">The Place You Can Find Your Necessary Items with The Reasonable Price</h1>
                         <p className="mb-5">With the improvement of people's living standards, replacing the older generations of products by new ones has become more and more common. So a lot of used goods become available for others to purchase.Those that are being purchased by or otherwise transferred to a second or later end user are called second-hand goods or used goods and the numerous used goods form a big market, the second-hand market.</p>
-                        <button className="btn border-0 bg-cyan-700 btn-wide">Shop Now</button>
+                        <button className="btn border-0 bg-cyan-700 sm:btn-wide">Shop Now</button>
                     </div>
                 </div>
             </div>

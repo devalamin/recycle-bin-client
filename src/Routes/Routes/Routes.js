@@ -5,6 +5,7 @@ import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Register/Register";
 import SingleCategory from "../../Pages/Shared/SingleCategory/SingleCategory";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -24,9 +25,9 @@ export const router = createBrowserRouter([
                 element: <Register></Register>
             },
             {
-                path: '/category/:brandname',
-                element: <SingleCategory></SingleCategory>,
-                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.brandname}`)
+                path: '/category/:id',
+                element: <PrivateRoute><SingleCategory></SingleCategory></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
             }
         ]
     },

@@ -1,3 +1,4 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -7,8 +8,10 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
 
+    const googleProvider = new GoogleAuthProvider();
+
     const { register, handleSubmit } = useForm();
-    const { createNewUser } = useContext(AuthContext);
+    const { createNewUser, googleLogin, updateUserProfile } = useContext(AuthContext);
     const [registerError, SetRegisterError] = useState('')
 
     const handleRegister = data => {
@@ -17,10 +20,15 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
 
-                if (user.uid) {
+                const userInfo = {
+                    displayName: data.name
+                };
+                updateUserProfile(userInfo)
 
+                if (user.uid) {
                     toast.success(`${data.account_type} Account Created Successfully`)
                 }
+                console.log(user);
             })
             .catch(error => {
                 SetRegisterError(error.message)
@@ -28,6 +36,17 @@ const Register = () => {
             })
 
 
+    };
+
+    const handleGoogleLogin = () => {
+        googleLogin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
 
@@ -70,7 +89,7 @@ const Register = () => {
                 </form>
                 <div className="divider"></div>
                 <div className='flex justify-center space-x-3'>
-                    <button className='btn border-0 w-20 bg bg-slate-900 '><FaGoogle className='text-2xl font-bold' /></button>
+                    <button onClick={handleGoogleLogin} className='btn border-0 w-20 bg bg-slate-900 '><FaGoogle className='text-2xl font-bold' /></button>
                     <button className='btn border-0 w-20 bg bg-slate-900 '><FaGithub className='text-2xl font-bold' /></button>
                 </div>
                 <div className='mt-5 text-start'>

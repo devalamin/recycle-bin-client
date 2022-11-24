@@ -3,12 +3,25 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
-    const { user } = useContext(AuthContext)
+    const { user, userLogout } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        userLogout()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
 
     const navItems = <>
-        <li>{user}</li>
+        <li className='font-semibold mt-3'>{user?.email}</li>
         <li><Link className='font-semibold' to='/'>Home</Link></li>
-        <li><Link className='font-semibold' to='/login'>Login</Link></li>
+        <>
+            {
+                user?.uid ? <li className='mt-2'><button onClick={handleLogout} className='btn btn-sm py-2'>Logout</button></li>
+                    :
+                    <li><Link className='font-semibold' to='/login'>Login</Link></li>
+            }
+        </>
+
     </>
 
 
@@ -23,7 +36,7 @@ const Header = () => {
                         {navItems}
                     </ul>
                 </div>
-                <Link to='/' className="btn border-0 bg-gradient-to-r from-stone-800 to-cyan-900  normal-case text-xl">Recycle Bin</Link>
+                <Link to='/' className="btn hidden lg:inline border-0 bg-gradient-to-r from-stone-800 to-cyan-900  normal-case text-xl">Recycle Bin</Link>
             </div>
             <div className="navbar-end hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
