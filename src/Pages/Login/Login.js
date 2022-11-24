@@ -1,14 +1,27 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaGoogle, FaGithub, FaGit } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
 
     const { register, handleSubmit } = useForm();
-    // const [data, setData] = useState("");
+    const { userLogin } = useContext(AuthContext);
+    const [loginError, setLoginError] = useState('')
+
 
     const handleLogin = (data) => {
+        setLoginError('')
+        userLogin(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => {
+                setLoginError(error.message)
+
+            })
         console.log(data);
 
     }
@@ -33,6 +46,9 @@ const Login = () => {
                         </label>
                         <input className="input input-bordered w-full" type='password' {...register("password")} placeholder="Password" />
 
+                    </div>
+                    <div>
+                        <p>{loginError}</p>
                     </div>
                     <input className='w-full mt-5 text-white btn bg-slate-700' type="submit" value='Login' />
                 </form>
