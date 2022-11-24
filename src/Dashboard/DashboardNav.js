@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const DashboardNav = () => {
 
     const dashboardMenu = <>
-        <li><Link>My Orders</Link></li>
+        <li><Link to='/dashboard/myorders'>My Orders</Link></li>
 
 
     </>

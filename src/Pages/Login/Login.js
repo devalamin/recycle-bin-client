@@ -39,13 +39,36 @@ const Login = () => {
         googleLogin(googleProvider)
             .then(result => {
                 const user = result.user;
+                saveAllUserToDb(user.displayName, user.email)
                 console.log(user);
             })
             .catch(error => {
                 console.log(error);
-            })
+            });
     }
 
+
+
+    const saveAllUserToDb = (name, email, account_type) => {
+        const user = {
+            name,
+            email,
+            account_type,
+        }
+
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                navigate(from, { replace: true })
+            })
+    }
 
     return (
         <div className='sm:h-[600px] flex sm:w-96 mx-auto rounded-md p-10 bg-lime-200 items-center justify-center mb-5'>

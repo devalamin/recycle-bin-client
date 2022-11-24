@@ -27,7 +27,7 @@ const Register = () => {
                 };
                 updateUserProfile(userInfo)
                     .then(() => {
-                        saveAllUserToDb(data.account_type, data.name, data.email)
+                        saveAllUserToDb(data.name, data.email, data.account_type)
 
                     })
                     .catch(error => console.error(error))
@@ -45,11 +45,22 @@ const Register = () => {
 
     };
 
-    const saveAllUserToDb = (account_type, name, email) => {
+    const handleGoogleLogin = () => {
+        googleLogin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                saveAllUserToDb(user.displayName, user.email)
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    };
+
+    const saveAllUserToDb = (name, email, account_type) => {
         const user = {
-            account_type,
             name,
-            email
+            email,
+            account_type,
         }
 
         fetch('http://localhost:5000/users', {
@@ -62,23 +73,21 @@ const Register = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                navigate('/')
-            })
+                getUserToken(email)
 
-    }
-
-
-
-    const handleGoogleLogin = () => {
-        googleLogin(googleProvider)
-            .then(result => {
-                const user = result.user;
-                console.log(user);
-            })
-            .catch(error => {
-                console.log(error);
             })
     };
+
+    const getUserToken = email => {
+        fetch(`http://localhost:5000/jwt?email=${email}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.accessToken) {
+                    localStorage.setItem('accessToken', data.accessToken)
+                    navigate('/')
+                }
+            })
+    }
 
 
     return (

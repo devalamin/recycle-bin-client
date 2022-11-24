@@ -58,8 +58,8 @@ const BookingModal = ({ bookingProduct, setBookingProduct }) => {
                         <input name='email' disabled readOnly defaultValue={user?.email} type="email" placeholder="Type here" className="my-3 input input-bordered input-warning w-full" />
                         <input name='productName' disabled readOnly defaultValue={model} type="text" placeholder="Type here" className="my-3 input input-bordered input-warning w-full" />
                         <input name='productPrice' disabled readOnly defaultValue={`$ ${resale_price}`} type="text" placeholder="Type here" className="my-3 input input-bordered input-warning w-full" />
-                        <input name='phone' type="text" placeholder="Phone Number" className="my-3 input input-bordered input-warning w-full" />
-                        <input name='' type="text" placeholder="Where To Meet?" className="my-3 input input-bordered input-warning w-full" />
+                        <input name='phone' type="text" required placeholder="Phone Number" className="my-3 input input-bordered input-warning w-full" />
+                        <input name='' type="text" required placeholder="Where To Meet?" className="my-3 input input-bordered input-warning w-full" />
                         <input type="submit" value="Purchase" className='btn w-full' />
                     </form>
                 </div>
