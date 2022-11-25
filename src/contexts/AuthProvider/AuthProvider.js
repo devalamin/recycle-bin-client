@@ -14,6 +14,7 @@ const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState('');
     const [loading, setLoading] = useState(true);
+    const [adProducts, setAdProducts] = useState([])
 
     const [allUsersFromDb, setAllUsersFromDb] = useState([])
 
@@ -23,7 +24,16 @@ const AuthProvider = ({ children }) => {
                 setAllUsersFromDb(data.data)
 
             })
-    }, [])
+    }, []);
+
+
+
+    useEffect(() => {
+        axios.get('http://localhost:5000/advertisment')
+            .then(data => {
+                setAdProducts(data.data)
+            })
+    }, []);
 
 
 
@@ -71,7 +81,8 @@ const AuthProvider = ({ children }) => {
         user,
         userLogout,
         loading,
-        allUsersFromDb
+        allUsersFromDb,
+        adProducts
 
     }
 

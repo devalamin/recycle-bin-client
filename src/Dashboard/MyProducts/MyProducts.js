@@ -21,6 +21,22 @@ const MyProducts = () => {
         }
     });
 
+
+
+    const handleBoosting = id => {
+        fetch(`http://localhost:5000/dashboard/advertise/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+    }
+
     const handleDelete = id => {
         fetch(`http://localhost:5000/dashboard/products/${id}`, {
             method: "DELETE"
@@ -33,7 +49,7 @@ const MyProducts = () => {
                 }
                 console.log(data)
             })
-    }
+    };
 
 
 
@@ -86,7 +102,7 @@ const MyProducts = () => {
                                     </td>
                                     <td> ${myProduct?.resale_price}</td>
                                     <th>
-                                        <button className="btn border-0 btn-sm bg-lime-600">Boost</button>
+                                        <button onClick={() => handleBoosting(myProduct?._id)} className="btn border-0 btn-sm bg-lime-600">{myProduct?.adstatus ? 'Boosted' : 'Boost'}</button>
                                     </th>
                                 </tr>)
                             }
