@@ -29,11 +29,11 @@ const Login = () => {
 
     const handleLogin = (data) => {
         setLoginError('')
-        userLogin(data.email, data.password)
+        userLogin(data?.email, data?.password)
             .then(result => {
-                const user = result.user;
+                const user = result?.user;
                 console.log(user);
-                setLoggedInUserEmail(data.email);
+                setLoggedInUserEmail(data?.email);
                 navigate(from, { replace: true })
 
             })
@@ -41,7 +41,7 @@ const Login = () => {
                 setLoginError(error.message)
 
             })
-        console.log(data);
+
 
     }
 
@@ -49,7 +49,7 @@ const Login = () => {
         googleLogin(googleProvider)
             .then(result => {
                 const user = result.user;
-                saveAllUserToDb(user.displayName, user.email)
+                saveAllUserToDb(user?.displayName, user?.email)
                 setLoggedInUserEmail(user?.email)
                 navigate(from, { replace: true })
                 console.log(user);
@@ -71,7 +71,8 @@ const Login = () => {
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                // authorization: `bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(user)
         })

@@ -29,7 +29,7 @@ const DashboardNav = () => {
         }
         {
             singleUser.account_type === 'admin' && <>
-                <li><Link>All Sellers</Link></li>
+                <li><Link to='/dashboard/allsellers'>All Sellers</Link></li>
                 <li><Link to='/dashboard/allbuyers'>All Buyers</Link></li>
                 <li><Link>Reported Items</Link></li>
 

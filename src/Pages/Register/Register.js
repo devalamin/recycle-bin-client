@@ -29,7 +29,6 @@ const Register = () => {
         createNewUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
-
                 const userInfo = {
                     displayName: data.name
                 };
@@ -40,7 +39,7 @@ const Register = () => {
                     })
                     .catch(error => console.error(error))
 
-                if (user.uid) {
+                if (user?.uid) {
                     toast.success(`${data.account_type} Account Created Successfully`)
 
                 }
