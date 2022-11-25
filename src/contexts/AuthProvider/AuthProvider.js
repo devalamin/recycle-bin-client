@@ -1,16 +1,32 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
 import app from '../../firebase/firebase.config';
+import axios from 'axios'
+
+
 export const AuthContext = createContext();
 
-const auth = getAuth(app)
 
+const auth = getAuth(app)
 
 
 const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState('');
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
+
+    const [allUsersFromDb, setAllUsersFromDb] = useState('')
+
+    useEffect(() => {
+        axios.get('http://localhost:5000/users')
+            .then(data => {
+                setAllUsersFromDb(data.data)
+
+            })
+    }, [])
+
+
+
 
 
     const createNewUser = (email, password) => {
@@ -30,7 +46,7 @@ const AuthProvider = ({ children }) => {
 
     const updateUserProfile = userInfo => {
         return updateProfile(auth.currentUser, userInfo)
-    }
+    };
 
     const userLogout = () => {
         return signOut(auth)
@@ -54,7 +70,8 @@ const AuthProvider = ({ children }) => {
         updateUserProfile,
         user,
         userLogout,
-        loading
+        loading,
+        allUsersFromDb
 
     }
 

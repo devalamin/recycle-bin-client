@@ -31,7 +31,7 @@ const ProductsCard = ({ product, setBookingProduct }) => {
                     </div>
                 </div>
             </div>
-            {/* <BookingModal></BookingModal> */}
+
         </div>
     );
 };

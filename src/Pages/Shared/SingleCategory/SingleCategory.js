@@ -9,13 +9,14 @@ const SingleCategory = () => {
     return (
         <div>
             <div className='grid gap-10'>
-                {
+                {products &&
                     products.map(product => <ProductsCard
                         key={product._id}
                         product={product}
                         setBookingProduct={setBookingProduct}
                     ></ProductsCard>)
                 }
+
             </div>
             {bookingProduct &&
 

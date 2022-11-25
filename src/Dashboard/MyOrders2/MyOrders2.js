@@ -1,23 +1,33 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-import Loading from '../Loading/Loading';
 
-const MyOrders = () => {
-    const { user } = useContext(AuthContext)
+import Loading from '../../Pages/Loading/Loading';
+
+
+const MyOrders2 = () => {
+    const { user, loading } = useContext(AuthContext);
+    // console.log(user);
+
+    const url = `http://localhost:5000/purchasedproducts?email=${user?.email}`
 
     const { data: products = [], isLoading } = useQuery({
         queryKey: ['purchasedproducts', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/purchasedproducts?email=${user?.email}`)
-            const data = res.json()
-            return data
+            const res = await fetch(url, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+            const data = await res.json();
+            return data;
         }
-    })
+    });
+
+
     if (isLoading) {
         return <Loading></Loading>
     }
-    console.log(products);
 
 
     return (
@@ -38,7 +48,7 @@ const MyOrders = () => {
                         </thead>
                         <tbody>
                             {
-                                products.map(product => <tr key={product._id}>
+                                products?.map(product => <tr key={product._id}>
 
                                     <td>
                                         <div className="flex items-center space-x-3">
@@ -61,8 +71,6 @@ const MyOrders = () => {
                             }
                         </tbody>
 
-
-
                     </table>
                 </div>
             </div>
@@ -71,4 +79,4 @@ const MyOrders = () => {
     );
 };
 
-export default MyOrders;
+export default MyOrders2;

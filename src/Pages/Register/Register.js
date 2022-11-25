@@ -5,16 +5,24 @@ import toast from 'react-hot-toast';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const Register = () => {
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const googleProvider = new GoogleAuthProvider();
 
     const { register, handleSubmit } = useForm();
     const { createNewUser, googleLogin, updateUserProfile } = useContext(AuthContext);
-    const [registerError, SetRegisterError] = useState('')
+    const [registerError, SetRegisterError] = useState('');
+    const [registeredUserEmail, setRegisteredUserEmail] = useState('')
+    const [token] = useToken(registeredUserEmail)
+
+    if (token) {
+        navigate('/')
+    }
+
 
     const handleRegister = data => {
         SetRegisterError('')
@@ -73,21 +81,11 @@ const Register = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                getUserToken(email)
-
-            })
+                setRegisteredUserEmail(email)
+            });
     };
 
-    const getUserToken = email => {
-        fetch(`http://localhost:5000/jwt?email=${email}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.accessToken) {
-                    localStorage.setItem('accessToken', data.accessToken)
-                    navigate('/')
-                }
-            })
-    }
+
 
 
     return (

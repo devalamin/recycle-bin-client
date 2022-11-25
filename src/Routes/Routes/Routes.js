@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../../Dashboard/Dashboard";
 import DashboardLayout from "../../Dashboard/DashboardLayout";
+import MyOrders2 from "../../Dashboard/MyOrders2/MyOrders2";
 import Main from "../../layouts/Main/Main";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
-import MyOrders from "../../Pages/MyOrders/MyOrders";
 import Register from "../../Pages/Register/Register";
 import SingleCategory from "../../Pages/Shared/SingleCategory/SingleCategory";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard/myorders',
-                element: <MyOrders></MyOrders>
+                element: <MyOrders2></MyOrders2>
             }
         ]
     },

@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { FaGoogle, FaGithub, FaGit } from 'react-icons/fa'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
 
@@ -12,11 +13,18 @@ const Login = () => {
     const { register, handleSubmit } = useForm();
     const { userLogin, googleLogin } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
-
     const location = useLocation();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [loggedInUserEmail, setLoggedInUserEmail] = useState('')
+
+    const [token] = useToken(loggedInUserEmail);
 
     const from = location.state?.from?.pathname || '/'
+
+    if (token) {
+        navigate(from, { replace: true })
+    }
+
 
 
     const handleLogin = (data) => {
@@ -25,7 +33,8 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                navigate(from, { replace: true })
+                setLoggedInUserEmail(data.email)
+
             })
             .catch(error => {
                 setLoginError(error.message)
