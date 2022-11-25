@@ -1,11 +1,32 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthProvider/AuthProvider';
 
 const DashboardNav = () => {
+    const { user, allUsersFromDb } = useContext(AuthContext);
+    const [singleUser, setSingleUser] = useState('')
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/singleuser?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setSingleUser(data)
+            });
+    }, [user?.email]);
+
+
 
     const dashboardMenu = <>
-        <li><Link to='/dashboard/myorders'>My Orders</Link></li>
-
+        {
+            (singleUser.account_type === 'buyer' && <li><Link to='/dashboard/myorders'>My Orders</Link></li>) || (!singleUser.account_type && <li><Link to='/dashboard/myorders'>My Orders</Link></li>)
+        }
+        {
+            singleUser.account_type === 'seller' &&
+            <>
+                <li><Link>My Products</Link></li>
+                <li><Link>Add A Product</Link></li>
+            </>
+        }
 
     </>
     return (

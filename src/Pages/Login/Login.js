@@ -33,7 +33,8 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                setLoggedInUserEmail(data.email)
+                setLoggedInUserEmail(data.email);
+                navigate(from, { replace: true })
 
             })
             .catch(error => {
@@ -49,6 +50,8 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 saveAllUserToDb(user.displayName, user.email)
+                setLoggedInUserEmail(user?.email)
+                navigate(from, { replace: true })
                 console.log(user);
             })
             .catch(error => {
@@ -75,7 +78,7 @@ const Login = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                navigate(from, { replace: true })
+
             })
     }
 

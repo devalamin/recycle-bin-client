@@ -57,7 +57,8 @@ const Register = () => {
         googleLogin(googleProvider)
             .then(result => {
                 const user = result.user;
-                saveAllUserToDb(user.displayName, user.email)
+                saveAllUserToDb(user?.displayName, user?.email);
+                setRegisteredUserEmail(user?.email)
             })
             .catch(error => {
                 console.log(error);
