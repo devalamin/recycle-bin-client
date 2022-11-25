@@ -4,6 +4,7 @@ import AllBuyers from "../../Dashboard/AllBuyers/AllBuyers";
 import Dashboard from "../../Dashboard/Dashboard";
 import DashboardLayout from "../../Dashboard/DashboardLayout";
 import MyOrders2 from "../../Dashboard/MyOrders2/MyOrders2";
+import MyProducts from "../../Dashboard/MyProducts/MyProducts";
 import Main from "../../layouts/Main/Main";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Home from "../../Pages/Home/Home";
@@ -49,9 +50,14 @@ export const router = createBrowserRouter([
                 element: <AddProducts></AddProducts>
             },
             {
+                path: '/dashboard/myproducts',
+                element: <MyProducts></MyProducts>
+            },
+            {
                 path: '/dashboard/allbuyers',
                 element: <AllBuyers></AllBuyers>
-            }
+            },
+
         ]
     },
 

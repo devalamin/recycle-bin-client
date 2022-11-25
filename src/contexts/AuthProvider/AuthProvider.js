@@ -15,7 +15,7 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState('');
     const [loading, setLoading] = useState(true);
 
-    const [allUsersFromDb, setAllUsersFromDb] = useState('')
+    const [allUsersFromDb, setAllUsersFromDb] = useState([])
 
     useEffect(() => {
         axios.get('http://localhost:5000/users')

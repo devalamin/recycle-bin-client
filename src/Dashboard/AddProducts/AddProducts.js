@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const AddProducts = () => {
+    const { user } = useContext(AuthContext);
+    console.log(user);
     const { register, handleSubmit } = useForm();
+    const navigate = useNavigate()
     const newTime = new Date();
 
     const handleAddProduct = (data) => {
-
 
         console.log(data);
         fetch('http://localhost:5000/dashboard/addingproducts', {
@@ -19,6 +23,10 @@ const AddProducts = () => {
         })
             .then(res => res.json())
             .then(newData => {
+                if (newData.acknowledged) {
+                    toast.success('Product Added Successfully');
+                    navigate('/dashboard/myproducts')
+                }
                 console.log(newData);
             })
 
@@ -112,7 +120,7 @@ const AddProducts = () => {
                         <label className="label">
                             <span className="label-text text-white">Your Email</span>
                         </label>
-                        <input required className="input input-bordered w-full" type='email' {...register("email")} placeholder="Email" />
+                        <input required defaultValue={user?.email} className="input input-bordered w-full" type='email' {...register("email")} placeholder="Email" />
 
                     </div>
                     <div className="form-control w-full ">
