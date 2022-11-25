@@ -3,14 +3,33 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 const AddProducts = () => {
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit } = useForm();
+    const newTime = new Date();
+
+    const handleAddProduct = (data) => {
+
+
+        console.log(data);
+        fetch('http://localhost:5000/dashboard/addingproducts', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(newData => {
+                console.log(newData);
+            })
+
+    }
 
 
     return (
         <div className='py-10 flex sm:w-8/12 mx-auto rounded-md bg-slate-700 items-center justify-center mb-5'>
             <div className='sm:w-8/12'>
                 <h2 className='text-2xl my-5 font-bold text-center text-white'>Add A Product</h2>
-                <form onSubmit={handleSubmit()}>
+                <form onSubmit={handleSubmit(handleAddProduct)}>
                     <label className="label">
                         <span className="label-text text-white">Product Category</span>
                     </label>
@@ -30,6 +49,12 @@ const AddProducts = () => {
                         <option value='used'>Used</option>
                     </select>
 
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text text-white">Time</span>
+                        </label>
+                        <input defaultValue={newTime} className="input input-bordered w-full" required type='text' {...register("time")} placeholder="Time" />
+                    </div>
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text text-white">Products Model Name</span>
@@ -52,21 +77,35 @@ const AddProducts = () => {
                         <label className="label">
                             <span className="label-text text-white">Resale Price</span>
                         </label>
-                        <input required className="input input-bordered w-full" type='password' {...register("resale_price")} placeholder="Resale Price" />
+                        <input required className="input input-bordered w-full" type='text' {...register("resale_price")} placeholder="Resale Price" />
 
                     </div>
                     <div className="form-control w-full ">
                         <label className="label">
                             <span className="label-text text-white">Original Price</span>
                         </label>
-                        <input required className="input input-bordered w-full" type='password' {...register("original_price")} placeholder="Original Price" />
+                        <input required className="input input-bordered w-full" type='text' {...register("original_price")} placeholder="Original Price" />
+
+                    </div>
+                    <div className="form-control w-full ">
+                        <label className="label">
+                            <span className="label-text text-white">Using Duration <small>(In Years)</small></span>
+                        </label>
+                        <input required className="input input-bordered w-full" type='text' {...register("using_duration")} placeholder="Duration" />
+
+                    </div>
+                    <div className="form-control w-full ">
+                        <label className="label">
+                            <span className="label-text text-white">Seller Name/Shop Name</span>
+                        </label>
+                        <input required className="input input-bordered w-full" type='text' {...register("seller_name")} placeholder="Seller Name" />
 
                     </div>
                     <div className="form-control w-full ">
                         <label className="label">
                             <span className="label-text text-white">Mobile Number</span>
                         </label>
-                        <input required className="input input-bordered w-full" type='password' {...register("phone")} placeholder="Phone" />
+                        <input required className="input input-bordered w-full" type='text' {...register("phone")} placeholder="Phone" />
 
                     </div>
                     <div className="form-control w-full ">
@@ -80,14 +119,14 @@ const AddProducts = () => {
                         <label className="label">
                             <span className="label-text text-white">Location</span>
                         </label>
-                        <input required className="input input-bordered w-full" type='password' {...register("location")} placeholder="Location" />
+                        <input required className="input input-bordered w-full" type='text' {...register("location")} placeholder="Location" />
 
                     </div>
                     <div className="form-control w-full ">
                         <label className="label">
                             <span className="label-text text-white">About This Product</span>
                         </label>
-                        <input required className="input input-bordered w-full" type='password' {...register("description")} placeholder="Description" />
+                        <input required className="input input-bordered w-full" type='text' {...register("description")} placeholder="Description" />
 
                     </div>
 
