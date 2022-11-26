@@ -41,7 +41,7 @@ const AllBuyers = () => {
                         <tr>
 
                             <th scope="col" className="py-3 px-6">
-                                Seller Name
+                                Buyers Name
                             </th>
 
                             <th scope="col" className="py-3 px-6">

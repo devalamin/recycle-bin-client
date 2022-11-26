@@ -6,8 +6,10 @@ import Dashboard from "../../Dashboard/Dashboard";
 import DashboardLayout from "../../Dashboard/DashboardLayout";
 import MyOrders2 from "../../Dashboard/MyOrders2/MyOrders2";
 import MyProducts from "../../Dashboard/MyProducts/MyProducts";
+import Payment from "../../Dashboard/Payment/Payment";
 import ReportedProducts from "../../Dashboard/ReportedProducts/ReportedProducts";
 import Main from "../../layouts/Main/Main";
+import Blogs from "../../Pages/Blogs/Blogs";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
@@ -31,6 +33,10 @@ export const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/blogs',
+                element: <Blogs></Blogs>
             },
             {
                 path: '/category/:id',
@@ -66,6 +72,12 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/reported',
                 element: <ReportedProducts></ReportedProducts>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({ params }) => fetch(`http://localhost:5000/purchased/${params.id}`)
+
             }
 
         ]

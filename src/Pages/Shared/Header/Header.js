@@ -14,6 +14,7 @@ const Header = () => {
     const navItems = <>
         {user && <li className='font-semibold mt-3 btn btn-sm py-2'>{user?.displayName}</li>}
         <li><Link className='font-semibold' to='/'>Home</Link></li>
+        <li><Link className='font-semibold' to='/blogs'>Blogs</Link></li>
         <>
             {
                 user?.uid ? <>
