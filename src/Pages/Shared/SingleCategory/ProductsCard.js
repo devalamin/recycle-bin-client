@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { MdOutlineVerified } from 'react-icons/md'
 
 const ProductsCard = ({ product, setBookingProduct }) => {
+
+    const [disableButton, setDisableButton] = useState(false)
+
     const { _id, model, picture, condition, resale_price, original_price,
         using_duration,
         location,
@@ -25,6 +28,8 @@ const ProductsCard = ({ product, setBookingProduct }) => {
             .then(data => {
                 if (data.acknowledged) {
                     toast.success('Reported To Admin')
+                    setDisableButton(true)
+
                 }
                 console.log(data);
             })
@@ -50,7 +55,7 @@ const ProductsCard = ({ product, setBookingProduct }) => {
 
                     <div className="card-actions justify-end items-center">
                         <label onClick={() => setBookingProduct(product)} htmlFor="product-modal" className="btn bg-amber-900">Buy Now</label>
-                        <button onClick={() => handleReportToAdmin(product)} className='btn btn-sm'>Report To Admin</button>
+                        <button disabled={disableButton} onClick={() => handleReportToAdmin(product)} className='btn btn-sm'>Report To Admin</button>
                     </div>
                 </div>
             </div>

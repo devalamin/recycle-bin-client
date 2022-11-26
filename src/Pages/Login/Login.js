@@ -34,8 +34,7 @@ const Login = () => {
                 const user = result?.user;
                 console.log(user);
                 setLoggedInUserEmail(data?.email);
-                navigate(from, { replace: true })
-
+                // navigate(from, { replace: true })
             })
             .catch(error => {
                 setLoginError(error.message)
@@ -85,7 +84,7 @@ const Login = () => {
     }
 
     return (
-        <div className='sm:h-[600px] flex sm:w-96 mx-auto rounded-md p-10 bg-lime-200 items-center justify-center mb-5'>
+        <div className='sm:h-[600px] flex sm:w-96 mx-auto rounded-md p-10 bg-cyan-600 items-center justify-center mb-5'>
             <div>
                 <h2 className='sm:text-2xl font-bold text-center text-lime-900'>Login</h2>
                 <form onSubmit={handleSubmit(handleLogin)}>

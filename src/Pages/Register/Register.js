@@ -89,7 +89,7 @@ const Register = () => {
 
 
     return (
-        <div className='sm:h-[700px] flex sm:w-8/12 mx-auto rounded-md bg-lime-200 items-center justify-center mb-5'>
+        <div className='sm:h-[700px] flex sm:w-8/12 mx-auto rounded-md bg-gradient-to-r from-cyan-300 to-cyan-800 items-center justify-center mb-5'>
             <div className='sm:w-8/12'>
                 <h2 className='text-2xl my-5 font-bold text-center text-lime-900'>Register</h2>
                 <form onSubmit={handleSubmit(handleRegister)}>
@@ -97,8 +97,8 @@ const Register = () => {
                         <span className="label-text">Account Type</span>
                     </label>
                     <select required {...register('account_type')} className="select select-bordered w-full">
-                        <option value='seller'>Seller</option>
                         <option value='buyer'>Buyer</option>
+                        <option value='seller'>Seller</option>
                     </select>
 
                     <div className="form-control w-full">
