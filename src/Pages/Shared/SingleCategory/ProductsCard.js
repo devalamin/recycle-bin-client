@@ -64,7 +64,7 @@ const ProductsCard = ({ product, setBookingProduct }) => {
                     <h2 className="card-title sm:text-lg text-xs"><span className='text-teal text-xs sm:text-2xl sm:font-bold'>Posted On:</span>  {time?.slice(0, 16)}</h2>
 
                     <div className="card-actions justify-end items-center">
-                        <label onClick={() => setBookingProduct(product)} htmlFor="product-modal" className="btn bg-amber-900">Buy Now</label>
+                        <label onClick={() => setBookingProduct(product)} htmlFor="product-modal" className="btn bg-amber-900">Book Now</label>
                         <button disabled={disableButton} onClick={() => handleReportToAdmin(product)} className='btn btn-sm'>Report To Admin</button>
                     </div>
                 </div>

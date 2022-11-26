@@ -17,7 +17,7 @@ const ReportedProducts = () => {
     });
 
     const handleDelete = id => {
-        console.log(id);
+
         fetch(`http://localhost:5000/reported/${id}`, {
             method: "DELETE"
         })
@@ -29,7 +29,6 @@ const ReportedProducts = () => {
                 }
                 console.log(data);
             })
-
     }
 
     if (isLoading) {
