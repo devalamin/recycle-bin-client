@@ -16,12 +16,22 @@ const ProductsCard = ({ product, setBookingProduct }) => {
     } = product;
 
     const handleReportToAdmin = reportedProduct => {
+        const { model, picture, resale_price, seller_name } = reportedProduct;
+
+
+        const reportedFinal = {
+            model,
+            picture,
+            resale_price,
+            seller_name
+        }
+
         fetch('http://localhost:5000/reported', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(reportedProduct)
+            body: JSON.stringify(reportedFinal)
 
         })
             .then(res => res.json())
