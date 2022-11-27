@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import AdvertisedProducts from '../AdvertisedProducts/AdvertisedProducts';
 import Banner from '../Banner/Banner';
-import BookingModal from '../Shared/SingleCategory/BookingModal/BookingModal';
+import ExtraBanner from '../ExtraBanner/ExtraBanner';
 import Categories from './Categories/Categories';
 
 const Home = () => {
@@ -13,6 +13,7 @@ const Home = () => {
             <Banner></Banner>
             {adProducts && <AdvertisedProducts></AdvertisedProducts>}
             <Categories></Categories>
+            <ExtraBanner></ExtraBanner>
 
             {/* <BookingModal></BookingModal> */}
         </div>
