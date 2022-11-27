@@ -27,7 +27,24 @@ const AllSellers = () => {
                 }
                 console.log(data);
             })
+    };
+
+
+
+    const handleSellerVerify = id => {
+        fetch(`http://localhost:5000/sellerverify/${id}`, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            });
+        // console.log(id);
     }
+
     if (isLoading) {
         return <Loading></Loading>
     }
@@ -54,8 +71,14 @@ const AllSellers = () => {
                                 <th>{i + 1}</th>
                                 <td>{seller?.name}</td>
                                 <td>{seller?.email}</td>
-                                <td><button className='btn btn-sm'>Verify Seller</button></td>
-                                <td><button onClick={() => handleDelete(seller?._id)} className='btn btn-sm'>Delete</button></td>
+                                <td>
+                                    {
+                                        seller?.seller_status === 'verified' ? <button className='btn btn-sm bg-success border-0'>Verified</button>
+                                            :
+                                            <button onClick={() => handleSellerVerify(seller?._id)} className='btn btn-sm'>Verify Seller</button>
+                                    }
+                                </td>
+                                <td><button onClick={() => handleDelete(seller?._id)} className='btn btn-sm bg-red-700 border-0'>Delete</button></td>
                             </tr>)
                         }
 
