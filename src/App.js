@@ -2,6 +2,8 @@ import { Toaster } from 'react-hot-toast';
 import { RouterProvider } from 'react-router-dom';
 import './App.css';
 import { router } from './Routes/Routes/Routes';
+<script src="../path/to/flowbite/dist/flowbite.js"></script>
+
 
 function App() {
   return (
