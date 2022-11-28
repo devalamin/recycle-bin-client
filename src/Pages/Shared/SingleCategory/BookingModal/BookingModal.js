@@ -54,10 +54,10 @@ const BookingModal = ({ bookingProduct, setBookingProduct }) => {
                     <label htmlFor="product-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h3 className="text-lg font-bold mb-6">{model}</h3>
                     <form onSubmit={handlePurchaseProduct}>
-                        <input name='CustomerName' disabled readOnly defaultValue={user?.displayName} type="text" placeholder="Type here" className="my-3 input input-bordered input-warning w-full" />
-                        <input name='email' disabled readOnly defaultValue={user?.email} type="email" placeholder="Type here" className="my-3 input input-bordered input-warning w-full" />
-                        <input name='productName' disabled readOnly defaultValue={model} type="text" placeholder="Type here" className="my-3 input input-bordered input-warning w-full" />
-                        <input name='productPrice' disabled readOnly defaultValue={`${resale_price}`} type="text" placeholder="Type here" className="my-3 input input-bordered input-warning w-full" />
+                        <input name='CustomerName' disabled readOnly value={user?.displayName} type="text" placeholder="Type here" className="my-3 input input-bordered input-warning w-full" />
+                        <input name='email' disabled readOnly value={user?.email} type="email" placeholder="Type here" className="my-3 input input-bordered input-warning w-full" />
+                        <input name='productName' disabled readOnly value={model} type="text" placeholder="Type here" className="my-3 input input-bordered input-warning w-full" />
+                        <input name='productPrice' disabled readOnly value={`${resale_price}`} type="text" placeholder="Type here" className="my-3 input input-bordered input-warning w-full" />
                         <input name='phone' type="text" required placeholder="Phone Number" className="my-3 input input-bordered input-warning w-full" />
                         <input name='' type="text" required placeholder="Where To Meet?" className="my-3 input input-bordered input-warning w-full" />
                         <input type="submit" value="Purchase" className='btn w-full' />

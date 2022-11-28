@@ -61,7 +61,7 @@ const AddProducts = () => {
                         <label className="label">
                             <span className="label-text text-white">Time</span>
                         </label>
-                        <input defaultValue={newTime} className="input input-bordered w-full" required type='text' {...register("time")} placeholder="Time" />
+                        <input value={newTime} className="input input-bordered w-full" required type='text' {...register("time")} placeholder="Time" />
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
@@ -120,7 +120,7 @@ const AddProducts = () => {
                         <label className="label">
                             <span className="label-text text-white">Your Email</span>
                         </label>
-                        <input required defaultValue={user?.email} className="input input-bordered w-full" type='email' {...register("email")} placeholder="Email" />
+                        <input required value={user?.email} className="input input-bordered w-full" type='email' {...register("email")} placeholder="Email" />
 
                     </div>
                     <div className="form-control w-full ">
