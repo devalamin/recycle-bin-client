@@ -32,7 +32,7 @@ const Login = () => {
         userLogin(data?.email, data?.password)
             .then(result => {
                 const user = result?.user;
-                console.log(user);
+
                 setLoggedInUserEmail(data?.email);
                 // navigate(from, { replace: true })
             })
@@ -51,7 +51,7 @@ const Login = () => {
                 saveAllUserToDb(user?.displayName, user?.email)
                 setLoggedInUserEmail(user?.email)
                 navigate(from, { replace: true })
-                console.log(user);
+
             })
             .catch(error => {
                 console.log(error);
@@ -67,7 +67,7 @@ const Login = () => {
             account_type,
         }
 
-        fetch('http://localhost:5000/users', {
+        fetch('https://recycle-bin-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

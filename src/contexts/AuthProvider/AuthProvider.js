@@ -19,7 +19,7 @@ const AuthProvider = ({ children }) => {
     const [allUsersFromDb, setAllUsersFromDb] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:5000/users')
+        axios.get('https://recycle-bin-server.vercel.app/users')
             .then(data => {
                 setAllUsersFromDb(data.data)
 
@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:5000/advertisment')
+        axios.get('https://recycle-bin-server.vercel.app/advertisment')
             .then(data => {
                 setAdProducts(data.data)
             })

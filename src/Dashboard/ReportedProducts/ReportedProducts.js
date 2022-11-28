@@ -10,7 +10,7 @@ const ReportedProducts = () => {
     const { data: reportedProducts = [], isLoading, refetch } = useQuery({
         queryKey: ['reported'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/reported')
+            const res = await fetch('https://recycle-bin-server.vercel.app/reported')
             const data = await res.json()
             return data;
         }
@@ -18,7 +18,7 @@ const ReportedProducts = () => {
 
     const handleDelete = id => {
 
-        fetch(`http://localhost:5000/reported/${id}`, {
+        fetch(`https://recycle-bin-server.vercel.app/reported/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())

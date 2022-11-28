@@ -10,7 +10,7 @@ const MyOrders2 = () => {
     const { user, loading } = useContext(AuthContext);
     // console.log(user);
 
-    const url = `http://localhost:5000/purchasedproducts?email=${user?.email}`
+    const url = `https://recycle-bin-server.vercel.app/purchasedproducts?email=${user?.email}`
 
     const { data: products = [], isLoading } = useQuery({
         queryKey: ['purchasedproducts', user?.email],

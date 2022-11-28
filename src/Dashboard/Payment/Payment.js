@@ -11,6 +11,7 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 const Payment = () => {
 
     const product = useLoaderData();
+    console.log(product);
     const { productName, productPrice, CustomerName } = product;
 
     return (

@@ -13,7 +13,7 @@ const MyProducts = () => {
         queryKey: ['myproducts', user?.email],
         queryFn: async () => {
             if (user) {
-                const res = await fetch(`http://localhost:5000/dashboard/myproducts?email=${user?.email}`)
+                const res = await fetch(`https://recycle-bin-server.vercel.app/dashboard/myproducts?email=${user?.email}`)
                 const data = await res.json();
                 console.log(data);
                 return data;
@@ -24,7 +24,7 @@ const MyProducts = () => {
 
 
     const handleBoosting = id => {
-        fetch(`http://localhost:5000/dashboard/advertise/${id}`, {
+        fetch(`https://recycle-bin-server.vercel.app/dashboard/advertise/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -38,7 +38,7 @@ const MyProducts = () => {
     }
 
     const handleDelete = id => {
-        fetch(`http://localhost:5000/dashboard/products/${id}`, {
+        fetch(`https://recycle-bin-server.vercel.app/dashboard/products/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())

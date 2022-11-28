@@ -7,7 +7,7 @@ const DashboardNav = () => {
     const [singleUser, setSingleUser] = useState('')
 
     useEffect(() => {
-        fetch(`http://localhost:5000/singleuser?email=${user?.email}`)
+        fetch(`https://recycle-bin-server.vercel.app/singleuser?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setSingleUser(data)

@@ -8,7 +8,7 @@ const AllSellers = () => {
     const { data: allsellers = [], isLoading, refetch } = useQuery({
         queryKey: ['selleraccount'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/selleraccount')
+            const res = await fetch('https://recycle-bin-server.vercel.app/selleraccount')
             const data = await res.json()
             return data
         }
@@ -16,7 +16,7 @@ const AllSellers = () => {
     })
 
     const handleDelete = id => {
-        fetch(`http://localhost:5000/sellerdelete/${id}`, {
+        fetch(`https://recycle-bin-server.vercel.app/sellerdelete/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -25,14 +25,14 @@ const AllSellers = () => {
                     toast.success('Deleted Successfully')
                     refetch()
                 }
-                console.log(data);
+
             })
     };
 
 
 
     const handleSellerVerify = id => {
-        fetch(`http://localhost:5000/sellerverify/${id}`, {
+        fetch(`https://recycle-bin-server.vercel.app/sellerverify/${id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'

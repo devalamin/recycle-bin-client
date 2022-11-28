@@ -42,10 +42,11 @@ export const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <PrivateRoute><SingleCategory></SingleCategory></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
+                loader: ({ params }) => fetch(`https://recycle-bin-server.vercel.app/category/${params.id}`)
             }
         ]
     },
+    // dashboard routes start
     {
         path: '/dashboard',
         element: <DashboardLayout></DashboardLayout>,
@@ -77,12 +78,13 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(`http://localhost:5000/purchased/${params.id}`)
+                loader: ({ params }) => fetch(`https://recycle-bin-server.vercel.app/purchased/${params.id}`)
 
             }
 
         ]
     },
+    // error route
 
     {
         path: '*',

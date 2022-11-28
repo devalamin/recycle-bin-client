@@ -71,7 +71,7 @@ const Register = () => {
             account_type,
         }
 
-        fetch('http://localhost:5000/users', {
+        fetch('https://recycle-bin-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

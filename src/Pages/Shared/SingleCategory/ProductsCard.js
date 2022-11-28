@@ -26,7 +26,7 @@ const ProductsCard = ({ product, setBookingProduct }) => {
             seller_name
         }
 
-        fetch('http://localhost:5000/reported', {
+        fetch('https://recycle-bin-server.vercel.app/reported', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

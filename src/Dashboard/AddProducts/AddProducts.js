@@ -6,15 +6,15 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const AddProducts = () => {
     const { user } = useContext(AuthContext);
-    console.log(user);
+
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate()
     const newTime = new Date();
 
     const handleAddProduct = (data) => {
 
-        console.log(data);
-        fetch('http://localhost:5000/dashboard/addingproducts', {
+
+        fetch('https://recycle-bin-server.vercel.app/dashboard/addingproducts', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
@@ -27,7 +27,7 @@ const AddProducts = () => {
                     toast.success('Product Added Successfully');
                     navigate('/dashboard/myproducts')
                 }
-                console.log(newData);
+
             })
 
     }

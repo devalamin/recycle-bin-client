@@ -8,13 +8,13 @@ const AllBuyers = () => {
     const { data: allBuyers = [], isLoading, refetch } = useQuery({
         queryKey: [''],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/buyeraccount')
+            const res = await fetch('https://recycle-bin-server.vercel.app/buyeraccount')
             const data = await res.json()
             return data;
         }
     });
     const handleDelete = id => {
-        fetch(`http://localhost:5000/buyerdelete/${id}`, {
+        fetch(`https://recycle-bin-server.vercel.app/buyerdelete/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())
